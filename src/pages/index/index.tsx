@@ -13,7 +13,11 @@ import './index.less'
 class Index extends Component<IndexProps,IndexState > {
   constructor(props: IndexProps) {
     super(props)
-    this.state = {}
+    this.state = {
+      info: {
+        name: '小艾'
+      }
+    }
   }
 
   componentDidMount() {
@@ -23,7 +27,7 @@ class Index extends Component<IndexProps,IndexState > {
   render() {
     return (
       <View className='index-wrap'>
-          index
+        {this.state.info?.age || 2}
       </View>
     )
   }

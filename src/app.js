@@ -1,10 +1,15 @@
 import { Component } from 'react'
 import dva from './utils/dva'
+import Taro from '@tarojs/taro'
 import models from './models'
 import { Provider } from 'react-redux'
 const dvaApp = dva.createApp({
   initialState: {},
   models,
+  initialState: Taro.getStorageSync('state') ? JSON.parse(Taro.getStorageSync('state')) : {},
+  onStateChange: (state) => {
+    Taro.setStorageSync('state', JSON.stringify(state))
+  }
 });
 const store = dvaApp.getStore()
 class App extends Component {
